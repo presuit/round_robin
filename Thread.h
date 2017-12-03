@@ -21,13 +21,12 @@ typedef enum{
 }ThreadStatus;
 
 typedef struct _Thread {
-//	ThreadStatus			status;
-//    	pthread_t			tid;
-//    	pthread_cond_t     		readyCond;
-//   	BOOL				bRunnable;
-//   	pthread_mutex_t   		readyMutex;
-//	pthread_t			parentTid;
-	char					name;
+	ThreadStatus			status;
+    	pthread_t			tid;
+    	pthread_cond_t     		readyCond;
+   	BOOL				bRunnable;
+   	pthread_mutex_t   		readyMutex;
+	pthread_t			parentTid;
 	_Thread*				pPrev;
 	_Thread*				pNext;
 } Thread;	
@@ -53,17 +52,6 @@ int 		thread_suspend(thread_t tid);
 int		thread_resume(thread_t tid);
 thread_t 	thread_self();
 
-//linked list function
-
-Thread* init_link();
-void set_prev(Thread* source, Thread* target){source->pPrev = target;}
-void set_next(Thread* source, Thread* target){source->pNext = target;}
-void add_tcb(Thread** tail_ptr, Thread* new_node);
-Thread* copy_head_tcb(Thread* node);
-void remove_head_tcb(Thread** head_ptr);
-void head_to_tail(Thread** head_ptr, Thread** tail_ptr);
-void add_tcb_head(Thread** head_ptr, Thread** tail_ptr, Thread* new_node)
-Thread* find_tcb(Thread* head_ptr, pthread_t tid);
 
 #endif /* __THREAD_H__ */
 
