@@ -27,8 +27,8 @@ typedef struct _Thread {
    	BOOL				bRunnable;
    	pthread_mutex_t   		readyMutex;
 	pthread_t			parentTid;
-	_Thread*				pPrev;
-	_Thread*				pNext;
+	struct _Thread*				pPrev;
+	struct _Thread*				pNext;
 } Thread;	
 
 typedef struct __wrapperArg {
